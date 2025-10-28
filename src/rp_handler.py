@@ -89,7 +89,8 @@ def run_whisper_job(job):
             logprob_threshold=job_input["logprob_threshold"],
             no_speech_threshold=job_input["no_speech_threshold"],
             enable_vad=job_input["enable_vad"],
-            word_timestamps=job_input["word_timestamps", True]
+            # ★★★ 修正箇所：辞書から値を取り出す際は .get() を使ってデフォルト値を指定します ★★★
+            word_timestamps=job_input.get("word_timestamps", True) 
         )
 
     with rp_debugger.LineTimer('cleanup_step'):
